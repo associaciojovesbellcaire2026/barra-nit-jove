@@ -1,0 +1,34 @@
+/* Disseny general */
+* { margin:0; padding:0; box-sizing:border-box; font-family: sans-serif; touch-action: manipulation; }
+body { background:#111; color:white; overflow:hidden; height:100vh; }
+
+#pantallaPrincipal { display:flex; flex-direction:column; height:100vh; padding:10px; }
+
+#header { display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; height: 60px; }
+#resum-venda { font-size: 14px; color: #aaa; flex: 1; }
+#total { font-size:40px; font-weight:bold; margin: 0 15px; }
+
+/* Grid de productes */
+.grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; flex:1; }
+.producte { border:none; border-radius:15px; font-size:18px; font-weight:bold; color:black; display:flex; flex-direction:column; align-items:center; justify-content:center; position:relative; padding: 10px; }
+
+/* Colors fitxes */
+.groc { background:#FFD700; }
+.blau { background:#2196F3; color: white; }
+.vermell { background:#D32F2F; color: white; }
+.verd { background:#4CAF50; color: white; }
+.rossa { background:#A1887F; color: white; }
+
+.comptador { position:absolute; top:5px; right:10px; font-size:16px; background:rgba(0,0,0,0.2); padding:2px 8px; border-radius:10px; }
+.btn-minus { position:absolute; bottom:5px; left:10px; font-size:12px; background:rgba(0,0,0,0.3); border:none; color:white; padding:4px 8px; border-radius:5px; }
+
+/* Accions */
+.accions { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:10px; }
+.accions button { height:70px; font-size:20px; border-radius:10px; border:none; font-weight:bold; }
+
+/* Efectiu */
+#pantallaEfectiu { padding:20px; text-align:center; height: 100vh; }
+#canvi-display { font-size: 40px; margin: 20px 0; color: #4CAF50; font-weight: bold; }
+.grid-diners { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+.grid-diners button { height: 60px; font-size: 18px; border-radius: 10px; border: none; background: #333; color: white; }
+.btn-finalitzar { width: 100%; height: 80px; margin-top: 30px; font-size: 22px; background: #4CAF50; color: white; border: none; border-radius: 10px; }
