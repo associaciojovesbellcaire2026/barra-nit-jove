@@ -20,10 +20,17 @@
 </div>
 
 <div id="pantallaEfectiu">
-    <h2 id="display-canvi">Total: 0.00€</h2>
-    <input type="number" id="input-manual" placeholder="Import rebut" oninput="calcularCanvi()">
-    <button class="btn-final" onclick="finalitzar()">Finalitzar</button>
-    <button class="btn-tornar" onclick="tornar()">🔙 Enrere</button>
+    <h2 id="display-canvi" class="dades-pagament"></h2>
+    <div class="teclat">
+        <button class="btn-num" onclick="sumarEfectiu(0.5)">0.5€</button>
+        <button class="btn-num" onclick="sumarEfectiu(1)">1€</button>
+        <button class="btn-num" onclick="sumarEfectiu(2)">2€</button>
+        <button class="btn-num" onclick="sumarEfectiu(5)">5€</button>
+        <button class="btn-num" onclick="sumarEfectiu(10)">10€</button>
+        <button class="btn-num" onclick="sumarEfectiu(20)">20€</button>
+    </div>
+    <button style="width:100%; height:80px; margin-top:20px; font-size:24px;" onclick="finalitzar()">Finalitzar Venda</button>
+    <button style="width:100%; height:60px; margin-top:10px;" onclick="tornar()">🔙 Enrere</button>
 </div>
 
 <script src="script.js"></script>
