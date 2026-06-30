@@ -33,10 +33,17 @@ function pagar(tipus) {
     }
 }
 function sumarEfectiu(val) { pagat += val; actualitzarPantallaEfectiu(); }
+function afegirManual() {
+    let input = document.getElementById('input-manual');
+    let valor = parseFloat(input.value);
+    if (!isNaN(valor)) { pagat += valor; input.value = ''; actualitzarPantallaEfectiu(); }
+}
 function resetEfectiu() { pagat = 0; actualitzarPantallaEfectiu(); }
 function actualitzarPantallaEfectiu() {
     document.getElementById('display-canvi').innerHTML = 
-    `Total: ${total.toFixed(2)}€ | Rebut: ${pagat.toFixed(2)}€ <br> <b>Torna: ${Math.max(0, pagat - total).toFixed(2)}€</b>`;
+    `<span>Total a pagar: ${total.toFixed(2)}€</span>
+     <span>Total rebut: ${pagat.toFixed(2)}€</span>
+     <b>Torna: ${Math.max(0, pagat - total).toFixed(2)}€</b>`;
 }
 function tornar() { document.getElementById('pantallaPrincipal').style.display = 'flex'; document.getElementById('pantallaEfectiu').style.display = 'none'; }
 function finalitzar() { alert('Venda finalitzada'); reiniciar(); tornar(); }

@@ -20,7 +20,10 @@
 </div>
 
 <div id="pantallaEfectiu">
-    <h2 id="display-canvi" class="dades-pagament"></h2>
+    <div id="display-canvi" class="dades-pagament"></div>
+    
+    <input type="number" id="input-manual" class="input-manual" placeholder="Import manual (€)" onchange="afegirManual()">
+    
     <div class="teclat">
         <button class="btn-num" onclick="sumarEfectiu(0.5)">0.5€</button>
         <button class="btn-num" onclick="sumarEfectiu(1)">1€</button>
@@ -29,8 +32,9 @@
         <button class="btn-num" onclick="sumarEfectiu(10)">10€</button>
         <button class="btn-num" onclick="sumarEfectiu(20)">20€</button>
         <button class="btn-num" onclick="sumarEfectiu(50)">50€</button>
-        <button class="btn-accio-gran" onclick="resetEfectiu()">🔄 NETEJAR</button>
+        <button class="btn-netejar" onclick="resetEfectiu()">🔄 NETEJAR</button>
     </div>
+    
     <button class="btn-final" onclick="finalitzar()">FINALITZAR VENDA</button>
     <button class="btn-tornar" onclick="tornar()">🔙 ENRERE</button>
 </div>
