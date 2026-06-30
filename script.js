@@ -1,12 +1,12 @@
 let total = 0;
 let pagat = 0;
 let productes = {
-    'Cervesa 🍺': { preu: 2.5, count: 0, class: 'groc' },
-    'Combinat 🍹': { preu: 6.0, count: 0, class: 'vermell' },
-    'Got 🥤': { preu: 1.0, count: 0, class: 'rossa' },
-    'Refresc 🥤': { preu: 2.5, count: 0, class: 'groc' },
-    'Aigua 💧': { preu: 1.5, count: 0, class: 'blau' },
-    'Ratafia 🥃': { preu: 3.5, count: 0, class: 'verd' }
+    'CERVESA 🍺': { preu: 2.5, count: 0, class: 'groc' },
+    'COMBINAT 🍹': { preu: 6.0, count: 0, class: 'vermell' },
+    'GOT 🥤': { preu: 1.0, count: 0, class: 'rossa' },
+    'REFRESC 🥤': { preu: 2.5, count: 0, class: 'groc' },
+    'AIGUA 💧': { preu: 1.5, count: 0, class: 'blau' },
+    'RATAFIA 🥃': { preu: 3.5, count: 0, class: 'verd' }
 };
 
 function render() {
@@ -25,7 +25,7 @@ function render() {
 function afegir(nom) { total += productes[nom].preu; productes[nom].count++; render(); }
 function reiniciar() { total = 0; pagat = 0; for(let n in productes) productes[n].count = 0; render(); }
 function pagar(tipus) {
-    if (tipus === 'Targeta') { alert("Venda amb targeta!"); reiniciar(); }
+    if (tipus === 'Targeta') { alert("Venda amb targeta registrada!"); reiniciar(); }
     else { 
         document.getElementById('pantallaPrincipal').style.display = 'none'; 
         document.getElementById('pantallaEfectiu').style.display = 'block';
@@ -33,6 +33,7 @@ function pagar(tipus) {
     }
 }
 function sumarEfectiu(val) { pagat += val; actualitzarPantallaEfectiu(); }
+function resetEfectiu() { pagat = 0; actualitzarPantallaEfectiu(); }
 function actualitzarPantallaEfectiu() {
     document.getElementById('display-canvi').innerHTML = 
     `Total: ${total.toFixed(2)}€ | Rebut: ${pagat.toFixed(2)}€ <br> <b>Torna: ${Math.max(0, pagat - total).toFixed(2)}€</b>`;

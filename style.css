@@ -13,5 +13,9 @@ body { background:#111; color:white; height:100vh; display:flex; flex-direction:
 .accions button { height:80px; border-radius:10px; border:none; font-weight:bold; font-size: 20px; }
 #pantallaEfectiu { display:none; padding:20px; text-align:center; }
 .teclat { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 20px; }
-.btn-num { height: 60px; font-size: 24px; border-radius: 10px; border: none; }
-.dades-pagament { font-size: 24px; margin: 10px 0; }
+.btn-num { height: 70px; font-size: 26px; border-radius: 10px; border: none; background: #ddd; }
+.btn-accio-gran { height: 70px; font-size: 22px; border-radius: 10px; border: none; background: #ff5722; color: white; }
+.btn-final { width:100%; height:80px; margin-top:20px; font-size:24px; background:#4CAF50; color:white; border:none; border-radius:10px; }
+.btn-tornar { width:100%; height:80px; margin-top:10px; font-size: 24px; }
+.dades-pagament { font-size: 32px; margin: 20px 0; color: #fff; }
+#display-canvi b { color: #FFD700; font-size: 45px; }
