@@ -1,4 +1,3 @@
-<div class="accions">
 <!DOCTYPE html>
 <html lang="ca">
 <head>
@@ -6,78 +5,69 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NIT JOVE 26</title>
     <style>
-        * { margin:0; padding:0; box-sizing:border-box; font-family: sans-serif; }
-        body { background:#111; color:white; height:100vh; display:flex; flex-direction:column; }
-        #pantallaPrincipal { padding:10px; flex:1; display:flex; flex-direction:column; }
-        #total { font-size:35px; font-weight:bold; margin-bottom:10px; }
-        .grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; flex:1; }
-        .producte { border:none; border-radius:15px; font-size:16px; font-weight:bold; color:black; padding:10px; position:relative; height:90px; }
-        .groc { background:#FFD700; } .blau { background:#2196F3; color:white; }
-        .vermell { background:#D32F2F; color:white; } .verd { background:#4CAF50; color:white; }
-        .rossa { background:rgb(205, 45, 115); color:white; }
-        .comptador { position:absolute; top:5px; right:10px; font-size:18px; background:rgba(0,0,0,0.2); padding:2px 8px; border-radius:10px; }
-        .btn-minus { position:absolute; bottom:5px; left:5px; background:rgba(0,0,0,0.3); color:white; border:none; padding:5px 12px; border-radius:5px; }
-        .accions { display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px; margin-top:10px; }
-        .accions button { height:60px; border-radius:10px; border:none; font-weight:bold; }
-        #pantallaEfectiu { display:none; padding:20px; text-align:center; }
-        .input-diners { width:100%; height:50px; font-size:20px; text-align:center; margin:10px 0; }
+        body { background:#111; color:white; font-family:sans-serif; margin:0; padding:10px; }
+        #total-display { font-size:40px; font-weight:bold; text-align:center; margin-bottom:10px; }
+        .grid { display:grid; grid-template-columns:1fr 1fr; gap:15px; }
+        .btn-prod { height:120px; border-radius:20px; border:none; font-size:18px; font-weight:bold; position:relative; }
+        .btn-minus { position:absolute; bottom:5px; left:5px; width:40px; height:40px; border-radius:50%; border:none; background:rgba(0,0,0,0.3); color:white; font-size:20px; }
+        .accions { display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px; margin-top:20px; }
+        .btn-accio { height:80px; border-radius:15px; border:none; font-size:16px; font-weight:bold; }
+        #pantallaEfectiu { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:#111; padding:20px; text-align:center; }
+        .input-gran { width:100%; height:80px; font-size:30px; text-align:center; margin:20px 0; }
     </style>
 </head>
 <body>
 
 <div id="pantallaPrincipal">
-    <div id="total">0.00 €</div>
-    <div class="grid" id="gridProductes"></div>
+    <div id="total-display">0.00 €</div>
+    <div class="grid" id="grid"></div>
     <div class="accions">
-        <button onclick="reiniciar()">🔄</button>
-        <button onclick="pagar('Targeta')">💳 Targeta</button>
-        <button onclick="pagar('Efectiu')">💰 Efectiu</button>
+        <button class="btn-accio" onclick="reiniciar()">🔄</button>
+        <button class="btn-accio" style="background:#2196F3; color:white;" onclick="registrar('Targeta')">💳 Targeta</button>
+        <button class="btn-accio" style="background:#4CAF50; color:white;" onclick="mostrarEfectiu()">💰 Efectiu</button>
     </div>
 </div>
 
 <div id="pantallaEfectiu">
-    <h2 id="display-canvi">Total: 0.00€</h2>
-    <input type="number" id="input-manual" class="input-diners" placeholder="Import rebut" oninput="calcularCanvi()">
-    <button style="width:100%; height:50px; background:green; color:white; border:none; margin-bottom:10px;" onclick="alert('Venda registrada'); reiniciar(); tornar();">Finalitzar</button>
-    <button style="width:100%; height:50px;" onclick="tornar()">🔙 Enrere</button>
+    <h2 id="info-canvi">Total: 0.00€</h2>
+    <input type="number" id="input-manual" class="input-gran" placeholder="Import rebut" oninput="calcularCanvi()">
+    <button class="btn-accio" style="width:100%; background:#4CAF50;" onclick="finalitzar()">Finalitzar Venda</button>
+    <button class="btn-accio" style="width:100%; margin-top:10px;" onclick="tornar()">🔙 Enrere</button>
 </div>
 
 <script>
     let total = 0;
-    let productes = {
-        'Cervesa 🍺': { preu: 2.5, count: 0, class: 'groc' },
-        'Combinat 🍹': { preu: 6.0, count: 0, class: 'vermell' },
-        'Got 🥤': { preu: 1.0, count: 0, class: 'rossa' },
-        'Refresc 🥤': { preu: 2.5, count: 0, class: 'groc' },
-        'Aigua 💧': { preu: 1.5, count: 0, class: 'blau' },
-        'Ratafia 🥃': { preu: 3.5, count: 0, class: 'verd' }
+    let prods = {
+        'Cervesa 🍺': { preu: 2.5, count: 0, color: '#FFD700' },
+        'Combinat 🍹': { preu: 6.0, count: 0, color: '#D32F2F' },
+        'Got 🥤': { preu: 1.0, count: 0, color: '#D42D73' },
+        'Refresc 🥤': { preu: 2.5, count: 0, color: '#FFD700' },
+        'Aigua 💧': { preu: 1.5, count: 0, color: '#2196F3' },
+        'Ratafia 🥃': { preu: 3.5, count: 0, color: '#4CAF50' }
     };
 
     function render() {
-        const grid = document.getElementById('gridProductes');
+        const grid = document.getElementById('grid');
         grid.innerHTML = '';
-        for (let nom in productes) {
-            let p = productes[nom];
-            grid.innerHTML += `<button class="producte ${p.class}" onclick="afegir('${nom}')">
-                ${nom} <span class="comptador">${p.count}</span>
-                <button class="btn-minus" onclick="event.stopPropagation(); restar('${nom}')">-</button>
+        for (let nom in prods) {
+            grid.innerHTML += `<button class="btn-prod" style="background:${prods[nom].color}" onclick="sumar('${nom}')">
+                ${nom}<br>${prods[nom].count}<button class="btn-minus" onclick="event.stopPropagation(); restar('${nom}')">-</button>
             </button>`;
         }
-        document.getElementById("total").innerHTML = total.toFixed(2) + " €";
+        document.getElementById('total-display').innerText = total.toFixed(2) + ' €';
     }
 
-    function afegir(nom) { total += productes[nom].preu; productes[nom].count++; render(); }
-    function restar(nom) { if (productes[nom].count > 0) { total -= productes[nom].preu; productes[nom].count--; render(); } }
-    function reiniciar() { total = 0; for(let n in productes) productes[n].count = 0; render(); }
-    function pagar(tipus) {
-        if (tipus === 'Targeta') { alert("Venda amb targeta registrada!"); reiniciar(); }
-        else { document.getElementById('pantallaPrincipal').style.display = 'none'; document.getElementById('pantallaEfectiu').style.display = 'block'; }
-    }
-    function calcularCanvi() {
+    function sumar(nom) { total += prods[nom].preu; prods[nom].count++; render(); }
+    function restar(nom) { if(prods[nom].count > 0) { total -= prods[nom].preu; prods[nom].count--; render(); } }
+    function reiniciar() { total = 0; for(let n in prods) prods[n].count = 0; render(); }
+    function mostrarEfectiu() { document.getElementById('pantallaPrincipal').style.display='none'; document.getElementById('pantallaEfectiu').style.display='block'; }
+    function tornar() { document.getElementById('pantallaPrincipal').style.display='block'; document.getElementById('pantallaEfectiu').style.display='none'; }
+    function calcularCanvi() { 
         let rebut = parseFloat(document.getElementById('input-manual').value) || 0;
-        document.getElementById('display-canvi').innerHTML = `Total: ${total.toFixed(2)}€ | Torna: ${Math.max(0, rebut - total).toFixed(2)}€`;
+        document.getElementById('info-canvi').innerText = `Total: ${total.toFixed(2)}€ | Torna: ${(rebut - total).toFixed(2)}€`;
     }
-    function tornar() { document.getElementById('pantallaPrincipal').style.display = 'flex'; document.getElementById('pantallaEfectiu').style.display = 'none'; }
+    function registrar(tipus) { alert(tipus + " registrada!"); reiniciar(); tornar(); }
+    function finalitzar() { alert("Venda en efectiu registrada!"); reiniciar(); tornar(); }
     render();
 </script>
 </body>
