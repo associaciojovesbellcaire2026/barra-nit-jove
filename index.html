@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NIT JOVE 26</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+</head>
+<body>
+
+<div id="pantallaPrincipal">
+    <div id="total">0.00 €</div>
+    <div class="grid" id="gridProductes"></div>
+    <div class="accions">
+        <button onclick="reiniciar()">🔄</button>
+        <button onclick="pagar('Targeta')">💳 Targeta</button>
+        <button onclick="pagar('Efectiu')">💰 Efectiu</button>
+    </div>
+</div>
+
+<div id="pantallaEfectiu">
+    <h2 id="display-canvi">Total: 0.00€</h2>
+    <input type="number" id="input-manual" placeholder="Import rebut" oninput="calcularCanvi()">
+    <button class="btn-final" onclick="finalitzar()">Finalitzar</button>
+    <button class="btn-tornar" onclick="tornar()">🔙 Enrere</button>
+</div>
+
+<script src="script.js"></script>
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('service-worker.js')
+      .then(() => console.log('Service Worker registrat correctament'));
+  }
+</script>
+
+</body>
+</html>
