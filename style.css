@@ -1,7 +1,9 @@
 * { margin:0; padding:0; box-sizing:border-box; font-family: sans-serif; touch-action: manipulation; }
 body { background:#111; color:white; height:100vh; display:flex; flex-direction:column; overflow: hidden; }
 #pantallaPrincipal { padding:10px; flex:1; display:flex; flex-direction:column; }
-#total { font-size: 50px; font-weight:bold; text-align: center; margin-bottom: 10px; }
+#header { display:flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+#btn-resum { font-size: 24px; background: none; border: none; color: white; padding: 10px; }
+#total { font-size: 50px; font-weight:bold; }
 .grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; flex:1; }
 .producte { border:none; border-radius:15px; font-size:20px; font-weight:bold; color:black; position:relative; }
 .preu-petit { font-size: 14px; display: block; opacity: 0.8; }
@@ -18,6 +20,5 @@ body { background:#111; color:white; height:100vh; display:flex; flex-direction:
 .btn-final { width:100%; height:80px; margin-top:20px; font-size:24px; background:#4CAF50; color:white; border:none; border-radius:10px; }
 .btn-tornar { width:100%; height:80px; margin-top:10px; font-size: 24px; }
 .dades-pagament { font-size: 24px; margin: 10px 0; color: #fff; text-align: left; }
-.dades-pagament span { display: block; margin-bottom: 5px; }
 #display-canvi b { color: #FFD700; font-size: 45px; display: block; margin-top: 10px; text-align: center; }
 .input-manual { width: 100%; height: 60px; font-size: 24px; text-align: center; margin-bottom: 10px; border-radius: 10px; border: none; }

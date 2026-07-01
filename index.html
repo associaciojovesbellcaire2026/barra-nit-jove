@@ -10,7 +10,16 @@
 <body>
 
 <div id="pantallaPrincipal">
-    <div id="total">0.00 €</div>
+    <div id="header">
+        <div id="total">0.00 €</div>
+        <button id="btn-resum" onclick="toggleResum()">⬇️</button>
+    </div>
+    
+    <div id="panelResum" style="display:none; background:#333; padding:10px; border-radius:10px; margin-bottom:10px;">
+        <div id="llistatVendes"></div>
+        <button onclick="exportarExcel()" style="width:100%; padding:10px; margin-top:10px; background:#2196F3; color:white; border:none; border-radius:5px;">📥 EXPORTAR A EXCEL</button>
+    </div>
+
     <div class="grid" id="gridProductes"></div>
     <div class="accions">
         <button onclick="reiniciar()">🔄</button>
@@ -21,9 +30,7 @@
 
 <div id="pantallaEfectiu">
     <div id="display-canvi" class="dades-pagament"></div>
-    
     <input type="number" id="input-manual" class="input-manual" placeholder="Import manual (€)" onchange="afegirManual()">
-    
     <div class="teclat">
         <button class="btn-num" onclick="sumarEfectiu(0.5)">0.5€</button>
         <button class="btn-num" onclick="sumarEfectiu(1)">1€</button>
@@ -34,17 +41,10 @@
         <button class="btn-num" onclick="sumarEfectiu(50)">50€</button>
         <button class="btn-netejar" onclick="resetEfectiu()">🔄 NETEJAR</button>
     </div>
-    
-    <button class="btn-final" onclick="finalitzar()">FINALITZAR VENDA</button>
+    <button class="btn-final" onclick="confirmarFinalitzar()">FINALITZAR VENDA</button>
     <button class="btn-tornar" onclick="tornar()">🔙 ENRERE</button>
 </div>
 
 <script src="script.js"></script>
-<script>
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('service-worker.js')
-      .then(() => console.log('Service Worker registrat'));
-  }
-</script>
 </body>
 </html>
